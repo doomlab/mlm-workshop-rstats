@@ -1,0 +1,302 @@
+---
+title: "Multilevel Models Tutorial"
+author: "Erin M. Buchanan"
+format: revealjs
+editor: visual
+filters:
+  - webr
+---
+
+## Example slide
+
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+
+summary(fit)
+```
+
+## Reminder
+
+-   Everything we've done so far has dealt with measurements of:
+    -   Multiple samples (independent *t*, regression with categorical variables)
+    -   Multiple independent variables (multiple/logistic regression)
+    -   One sample tested twice (dependent *t*)
+
+## Hierarchical Data
+
+-   Hierarchical data is data that contains some form of structure of data points "nested" within a variable
+    -   A group of student's exam scores (each person tested multiple times)
+    -   Prices of healthcare equipment over the last year (same equipment measured over time)
+    -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
+
+## Hierarchical Data
+
+-   *In theory*, we could create one average score for each of the multiple measurements:
+    -   A group of student's exam scores (each person tested multiple times)
+        -   Each student has one overall exam average
+        -   Each exam has an overall average
+    -   Prices of healthcare equipment over the last year (same equipment measured over time)
+        -   Average yearly price for each equipment piece
+    -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
+        -   Average happiness by country
+
+## Hierarchical Data
+
+-   However, that's lame:
+    -   Reduces power because multiple data points become one score
+    -   Ignores the measurement error of the multiple data points
+    -   May hide interesting relationships that exist when points are examined individually
+
+## Multilevel Models
+
+-   Multilevel models (MLMs) allow you to retain power and analyze each data point while controlling for non-independence.
+-   You can potentially uncover why heteroscedasticity occurs within the analysis
+-   You can have missing data but still use other available data points
+    -   For example, if equipment prices are missing from May, you could model the data even without those numbers
+-   Control for measurement error due to the study design or measurement tools
+
+## Modeling
+
+-   MLM is still regression - and we can use linear, logistic, etc.
+-   We still use the same system of examining the model overall, then the predictors
+-   However, we need to add a new concept: random effects
+-   Fixed coefficients: Intercepts/slopes are assumed to be the same across different contexts
+-   Random coefficients: Intercepts/slopes are allowed to vary across different contexts
+
+## Random Coefficients
+
+-   Random variable: a grouping or clustering variable
+    -   You set this variable up based on the structure of the data
+    -   Usually the participants or data points that are measured multiple times
+-   A group of student's exam scores (each person tested multiple times)
+    -   Students would be the random variable
+-   Prices of healthcare equipment over the last year (same equipment measured over time)
+    -   Equipment is most likely, but could also be time depending on hypothesis
+-   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
+    -   Country
+
+## Random Coefficients
+
+-   Random intercept: allows each of the random variable "participants" to have a different intercept
+    -   Remember that the intercept is the average score for Y if X(s) are zero
+    -   Therefore, effectively this is the average of each "participant" separately
+    -   The values shown in the output are the deviation from the overall non-random intercept
+
+## Random Coefficients
+
+-   Random slope: allows each of the random variable "participants" to have a different slope for the target coefficient
+    -   You can just do one random slope (for just one X variable) or many of them
+    -   This output creates a different slope for each of the "participants"
+
+## Random Coefficients
+
+```{r}
+knitr::include_graphics("images/12_img_1.png")
+```
+
+## Random Coefficients
+
+```{r}
+knitr::include_graphics("images/12_img_2.png")
+```
+
+## Random Coefficients
+
+```{r}
+knitr::include_graphics("images/12_img_3.png")
+```
+
+## What Should We Use?
+
+-   Models are generally built from the simplest to the most complex
+    -   Null model or intercept only model
+    -   Random intercept model + below
+    -   Fixed effects model + below
+    -   Random slopes + below
+-   Compare with AIC
+
+## Model Walkthrough: Population and Measurement
+
+-   Population: English speaking people who also can type
+-   What they measured:
+    -   IVs:
+        -   Typing speed of the participants, number of finger and hand switches when typing, letter frequency in English, "right-hand" advantage
+    -   DV: Rating of how pleasant the word is
+
+## Model Walkthrough: Dataset
+
+```{r message = F}
+library(rio)
+library(dplyr)
+DF <- import("data/12_mlm.csv") %>% 
+  select(partno, rating, speed, trialcode, 
+         lrswitch, fingerswitch, letterfreq, rha)
+
+head(DF)
+```
+
+## Model Walkthrough: Hypotheses
+
+-   MODEL Hypothesis:
+    -   $H_0$: The overall prediction is equal to the null model with no predictors.
+        -   Null model residuals = Real model residuals
+    -   $H_A$: The overall prediction is not equal to the model with no predictors.
+        -   Null model residuals != Real model residuals
+
+## Model Walkthrough: Hypotheses
+
+-   PREDICTOR Hypothesis:
+    -   $H_0$: The predictor variable is not related to the dependent variable.
+        -   $b_1$ = 0
+    -   $H_A$: The predictor variable is related to the dependent variable.
+        -   $b_1$ != 0
+    -   This hypothesis applies to each predictor.
+
+## Model Walkthrough: Examine Data
+
+```{r message = F}
+hist(DF$rating)
+
+library(GGally)
+ggpairs(DF %>% select(-partno, -trialcode))
+```
+
+## Model Walkthrough: Model
+
+-   For assumption testing, we will want to examine the model that is most complex (but the best fitting)
+-   So we shall build them all here and determine which to use
+-   Start with intercept only model as our null model
+
+```{r}
+# gls is generalized least squares, like lm models 
+library(nlme)
+intercept.model <- gls(rating ~ 1, 
+                       data = DF, 
+                       method = "ML", 
+                       na.action = "na.omit")
+```
+
+## Model Walkthrough: Model
+
+-   You write random intercepts as `~ 1 | VARIABLE_NAME`
+
+```{r}
+random.intercept.model <- lme(rating ~ 1, 
+                              data = DF, 
+                              method = "ML", 
+                              na.action = "na.omit",
+                              # this is the random intercept part 
+                              random = ~1|partno)
+```
+
+## Multiple Model Walkthrough: Model
+
+-   Add the fixed effects like we normally do
+
+```{r}
+fixed.model <- lme(rating ~ speed +  
+                     fingerswitch + 
+                     letterfreq + 
+                     rha, 
+                   data = DF, 
+                   method = "ML", 
+                   na.action = "na.omit",
+                   random = ~1|partno)
+```
+
+## Multiple Model Walkthrough: Model
+
+-   You write random slopes as `~VARIABLE_NAME | VARIABLE_NAME`
+
+```{r}
+random.slope.model <- lme(rating ~ speed + 
+                            fingerswitch +
+                            letterfreq + 
+                            rha, 
+                          data = DF, 
+                          method = "ML", 
+                          na.action = "na.omit",
+                          # this is the random slopes 
+                          random = ~rha|partno)
+```
+
+## Model Walkthrough: Pick a Model
+
+-   Which model has the lowest AIC?
+
+```{r}
+library(performance)
+compare_performance(intercept.model, random.intercept.model,
+                    fixed.model, random.slope.model)
+
+AIC(intercept.model)
+AIC(random.intercept.model) # lower 
+AIC(fixed.model) # lower
+AIC(random.slope.model) # higher 
+```
+
+## Multiple Model Walkthrough: Assumptions
+
+-   Additivity: had to exclude a variable due to a high correlation
+-   Normality: Looks ok!
+
+```{r}
+# we can use check_model and check_outliers 
+# this was very slow on 36k datapoints, so here's a another option
+residuals <- scale(residuals(fixed.model))
+fitted <- scale(fitted.values(fixed.model))
+
+hist(residuals)
+{ qqnorm(residuals); abline(0,1) } 
+```
+
+## Multiple Model Walkthrough: Assumptions
+
+-   Linearity: Line looks fairly straight, maybe not perfect
+-   Homoscedasticity: Looks ok, lines are due to data type
+
+```{r}
+library(ggplot2)
+ggplot(data = NULL, aes(x = fitted, y = residuals)) + 
+  geom_point() + 
+  theme_classic() + 
+  geom_vline(xintercept = 0) + 
+  geom_hline(yintercept = 0) + 
+  geom_smooth()
+```
+
+## Multiple Model Walkthrough: Model
+
+-   We figured out this was the best model
+-   Our effect size $R^2$ is small-medium ($R^2$ = .07)
+
+```{r}
+model_performance(fixed.model)
+```
+
+## Multiple Model Walkthrough: Predictors
+
+-   What do the different results mean?
+
+```{r}
+library(parameters)
+model_parameters(fixed.model, summary = TRUE)
+```
+
+## Multiple Model Walkthrough: Predictors
+
+-   Let's see which predictor is the "best"
+-   Note that partial correlations are probably not appropriate when you have hierarchical data, because they assume you do not.
+
+```{r}
+standardize_parameters(fixed.model)
+# not sure why this plot is being weird 
+plot(standardize_parameters(fixed.model))
+```
+
+## Summary
+
+-   You learned about multilevel modeling for repeated or structured data
+-   Everything is a multilevel model if you try hard enough ;)
+-   You applied what you learned about regression (linear and logistic) to data with nested structures
+-   And you survived the semester!
