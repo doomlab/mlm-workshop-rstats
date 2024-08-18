@@ -5,8 +5,6 @@ format:
   revealjs:
     theme: night
 editor: source
-filters:
-  - webr
 incremental: true 
 scrollable: true 
 preview-links: true
@@ -188,22 +186,9 @@ knitr::include_graphics("images/12_img_3.png")
 -   But sometimes people like to do it the other way 
 -   Compare with AIC
 
-## `webr`  {.smaller}
+## Packages  {.smaller}
 
-- This tutorial was written with `quarto` and `webr`.
-- `webr` allows you to run *R* interactively in the browser without extra installation. 
-
-## Example `webr` {.smaller}
-
-```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
-
-summary(fit)
-```
-
-## Packages {.smaller}
-
-```{webr-r}
+```{r}
 library(rio) # importing data
 library(nlme) # other people love lmer4
 library(dplyr) # best data manipulation package
@@ -225,7 +210,7 @@ library(MuMIn) # effect sizes
 
 ## Example 1: Priming Data {.smaller}
 
-```{webr-r}
+```{r}
 DF <- import("data/sr_prime_trials.csv") %>% 
   # only variables we need
   select(observation, target_duration, word_combo, 
@@ -240,7 +225,7 @@ head(DF)
 
 ## Example 1: Priming Data  {.smaller}
 
-```{webr-r}
+```{r}
 # number of participants
 length(unique(DF$observation))
 # number of items 
@@ -258,7 +243,7 @@ DF %>%
 
 - `gls` is akin to `lm` using generalized least squares 
 
-```{webr-r}
+```{r}
 intercept.model <- gls(target_duration ~ 1, 
                        data = DF, 
                        method = "ML", 
@@ -273,7 +258,7 @@ summary(intercept.model)
   - Random is added directly to the equation 
   - `target_duration ~ (1|observation) + (1|word_combo)`
 
-```{webr-r}
+```{r}
 random.intercept.model <- lme(target_duration ~ 1, 
                               data = DF, 
                               method = "ML", 
@@ -287,7 +272,7 @@ summary(random.intercept.model)
 
 ## Example 1: Fixed Effects Model {.smaller}
 
-```{webr-r}
+```{r}
 fixed.model <- lme(target_duration ~ 1 + type,
                    data = DF, 
                    method = "ML", 
@@ -300,7 +285,7 @@ summary(fixed.model)
 
 ## Example 1: Model Comparison {.smaller}
 
-```{webr-r}
+```{r}
 compare_performance(intercept.model, random.intercept.model,
                     fixed.model)
 
@@ -311,7 +296,7 @@ AIC(fixed.model) # lower
 
 ## Example 1: Model Assumption Checks {.smaller}
 
-```{webr-r}
+```{r}
 # check_model(fixed.model)
 # check_outliers(fixed.model)
 
@@ -326,13 +311,13 @@ hist(residuals)
 
 ## Example 1: Effect Size {.smaller}
 
-```{webr-r}
+```{r}
 r.squaredGLMM(fixed.model)
 ```
 
 ## Example 1: Examine Results {.smaller}
 
-```{webr-r}
+```{r}
 model_parameters(fixed.model, summary = TRUE)
 # plot(model_parameters(fixed.model, summary = TRUE))
 standardize_parameters(fixed.model)
@@ -351,7 +336,7 @@ report(fixed.model)
 
 ## Example 2: Daily Diary Data {.smaller}
 
-```{webr-r}
+```{r}
 DF <- import("data/panas_data.csv") %>% 
   na.omit()
 
@@ -360,7 +345,7 @@ head(DF)
 
 ## Example 2: Daily Diary Data {.smaller}
 
-```{webr-r}
+```{r}
 # number of participants
 length(unique(DF$partno))
 # average number of time points per participant
@@ -376,7 +361,7 @@ DF %>%
 
 ## Example 2: Intercept Only Model {.smaller}
 
-```{webr-r}
+```{r}
 intercept.model <- gls(stress_total ~ 1, 
                        data = DF, 
                        method = "ML", 
@@ -387,7 +372,7 @@ summary(intercept.model)
 
 ## Example 2: Random Intercept Model {.smaller}
 
-```{webr-r}
+```{r}
 random.intercept.model <- lme(stress_total ~ 1, 
                               data = DF, 
                               method = "ML", 
@@ -400,7 +385,7 @@ summary(random.intercept.model)
 
 ## Example 2: Fixed Effects Creation {.smaller}
 
-```{webr-r}
+```{r}
 negative.mean <- aggregate(DF$panas_negative, 
                         by = list(DF$partno), 
                         mean, na.rm = TRUE)
@@ -411,7 +396,7 @@ DF$negative.cnt <- DF$panas_negative - DF$negative.mean
 
 ## Example 2: Fixed Effects Model {.smaller}
 
-```{webr-r}
+```{r}
 fixed.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
                    data = DF, 
                    method = "ML", 
@@ -423,7 +408,7 @@ summary(fixed.model)
 
 ## Example 2: Random Slope Model {.smaller}
 
-```{webr-r}
+```{r}
 random.slope.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
                    data = DF, 
                    method = "ML", 
@@ -435,7 +420,7 @@ summary(random.slope.model)
 
 ## Example 2: Model Comparison {.smaller}
 
-```{webr-r}
+```{r}
 compare_performance(intercept.model, random.intercept.model,
                     fixed.model, random.slope.model)
 
@@ -447,20 +432,20 @@ AIC(random.slope.model) # lower
 
 ## Example 2: Model Assumption Checks {.smaller}
 
-```{webr-r}
+```{r}
 check_model(random.slope.model)
 check_outliers(random.slope.model)
 ```
 
 ## Example 2: Effect Size {.smaller}
 
-```{webr-r}
+```{r}
 r.squaredGLMM(random.slope.model)
 ```
 
 ## Example 2: Examine Results {.smaller}
 
-```{webr-r}
+```{r}
 model_parameters(random.slope.model, summary = TRUE)
 # plot(model_parameters(fixed.model, summary = TRUE))
 
