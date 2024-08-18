@@ -1,20 +1,31 @@
 ---
 title: "Multilevel Models Tutorial"
 author: "Erin M. Buchanan"
-format: revealjs
-editor: visual
+format: 
+  revealjs:
+    theme: night
+editor: source
 filters:
   - webr
+incremental: true 
+scrollable: true 
+preview-links: true
+code-copy: true 
+highlight-style: github 
 ---
 
+## Goals {.smaller}
 
-## Goals
+```{r}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
 
 - Understand what types of data are appropriate for multilevel models
 - Review the basic equations/terminology of regression versus multilevel models
 - Learn how to implement these models in *R*
 
-## Terminology Note
+## Terminology Note {.smaller}
 
 - Multi-level model
 - Random effects model
@@ -22,20 +33,20 @@ filters:
 - Random coefficient model
 - Hierarchical model
 
-## Non-Hierarchical Data
+## Non-Hierarchical Data {.smaller}
 
 - Often thought of as "between-subjects" data
 - Each person/data observation has *one* row of data 
 - Where each column represents *one* variable 
 
-## Hierarchical Data
+## Hierarchical Data {.smaller}
 
 -   Hierarchical data is data that contains some form of structure of data points "nested" within a variable
     -   A group of student's exam scores (each person tested multiple times)
     -   Prices of healthcare equipment over the last year (same equipment measured over time)
     -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
 
-## Hierarchical Data
+## Hierarchical Data {.smaller}
 
 -   *In theory*, we could create one average score for each of the multiple measurements:
     -   A group of student's exam scores (each person tested multiple times)
@@ -46,14 +57,14 @@ filters:
     -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
         -   Average happiness by country
 
-## Hierarchical Data
+## Hierarchical Data {.smaller}
 
 -   However, that's lame:
     -   Reduces power because multiple data points become one score
     -   Ignores the measurement error of the multiple data points
     -   May hide interesting relationships that exist when points are examined individually
 
-## Multilevel Models
+## Multilevel Models {.smaller}
 
 -   Multilevel models (MLMs) allow you to retain power and analyze each data point while controlling for non-independence.
 -   You can potentially uncover why heteroscedasticity occurs within the analysis
@@ -61,7 +72,7 @@ filters:
     -   For example, if equipment prices are missing from May, you could model the data even without those numbers
 -   Control for measurement error due to the study design or measurement tools
 
-## Regression Equation
+## Regression Equation {.smaller}
 
 - A simple equation with one predictor: 
 
@@ -69,23 +80,23 @@ $$\hat{Y_i} = b_0 + b_1X_i + \epsilon_i$$
 
 - $\hat{Y_i}$: The *predicted* dependent variable score for participant $i$
 - $b_0$: The y-intercept, average score for Y when X is zero
-- $b_1$: The slope for the first predictor, 
+- $b_1$: The slope for the first predictor 
   - For every one unit increase in X, we see $b$ increases in Y
 - $X_i$: The score on the first predictor for participant $i$
 - $\epsilon_i$: The residual or error for participant $i$
   - The actual $Y_i$ minus the predicted $\hat{Y_i}$
 
-## Modeling
+## Modeling {.smaller}
 
 -   MLM is still regression - and we can use linear, logistic, etc.
 -   We generally use the same system as examining regression:
-  - An overall model 
-  - Examine individual predictors 
+    -   An overall model 
+    -   Examine individual predictors 
 -   However, we need to add a new concept: random effects
--   Fixed coefficients: Intercepts/slopes are assumed to be the same across different contexts
--   Random coefficients: Intercepts/slopes are allowed to vary across different contexts
+    -   Fixed coefficients: Intercepts/slopes are assumed to be the same across different contexts
+    -   Random coefficients: Intercepts/slopes are allowed to vary across different contexts
 
-## Random Coefficients
+## Random Coefficients {.smaller}
 
 -   Random variable: a grouping or clustering variable
     -   You set this variable up based on the structure of the data
@@ -97,7 +108,7 @@ $$\hat{Y_i} = b_0 + b_1X_i + \epsilon_i$$
 -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
     -   Country
     
-## MLM Terminology
+## MLM Terminology {.smaller}
 
 - Level 1 versus Level 2, 3, ...
 - Examples help: Predicting a language test score ~ gender_student + school_type
@@ -107,70 +118,67 @@ $$\hat{Y_i} = b_0 + b_1X_i + \epsilon_i$$
 - Level 1: gender of student (each test score is matched to a gender)
 - Level 2: school type (multiple language scores matched to a school type)
   
-## MLM Regression Equation
+## MLM Regression Equation {.smaller}
 
 - Level 1
 
 $$\hat{Y_{ij}} = b_{0j} + b_{1j}X_{ij} + \epsilon_{ij}$$
+
 - $\hat{Y_{ij}}$: predicted score for the dependent variable for participant $i$ for Level 2 $j$ 
 - $b_{0j}$: Intercept 
 - $b_{1j}$: Slope for level 1 predictor
 - $X_{ij}$: Level 1 predictor score for participant $i$ who is in Level 2 $j$
 - $\epsilon_{ij}$: Error for participant $i$ who is in Level 2 $j$
 
-## MLM Regression Equation
+## MLM Regression Equation {.smaller}
 
 - Level 2 
 
 $$b_{0j} = \gamma_{00} + \gamma_{01}X_j + u_{0j}$$
+
 - $X_j$: Level 2 predictor
 - $\gamma_{00}$: Overall intercept: grand mean of the dependent variable
 - $\gamma_{01}$: Effect of Level 2 predictor on level 1 intercept
 - $u_{0j}$: Difference in Level 2 $j$ from the overall intercept
 
 $$b_{1j} =  \gamma_{10} + \gamma_{11}X_j + u_{1j}$$
+
 - $\gamma_{10}$: average slope of the Level 1 predictor 
 - $\gamma_{11}$: Effect of the Level 2 predictor on the level 1 slope 
 - $u_{1j}$:  Difference in Level 2 $j$ from the overall slope
 
-## Random Coefficients
+## Random Coefficients {.smaller}
 
 -   Random intercept: allows each of the random cluster variables to have a different intercept
     -   Remember that the intercept is the average score for Y if X(s) are zero
     -   Therefore, effectively this is the average of each cluster separately
     -   The values shown in the output are the deviation from the overall non-random intercept
     
-## Random Coefficients
-
+## Random Coefficients {.smaller}
 
 ```{r}
 knitr::include_graphics("images/12_img_1.png")
 ```
 
-
-## Random Coefficients
+## Random Coefficients {.smaller}
 
 -   Random slope: allows each of the random cluster variables to have a different slope for the target coefficient
     -   You can just do one random slope (for just one X variable) or many of them
     -   This output creates a different slope for each of the clusters
 
-## Random Coefficients
-
+## Random Coefficients {.smaller}
 
 ```{r}
 knitr::include_graphics("images/12_img_2.png")
 ```
 
-
-## Random Coefficients
-
+## Random Coefficients {.smaller}
 
 ```{r}
 knitr::include_graphics("images/12_img_3.png")
 ```
 
-
-## What Should We Use?
+## What Should We Use? {.smaller}
 
 -   Models are generally built from the simplest to the most complex
     -   Null model or intercept only model
@@ -180,12 +188,12 @@ knitr::include_graphics("images/12_img_3.png")
 -   But sometimes people like to do it the other way 
 -   Compare with AIC
 
-## `webr`
+## `webr`  {.smaller}
 
 - This tutorial was written with `quarto` and `webr`.
 - `webr` allows you to run *R* interactively in the browser without extra installation. 
 
-## Example `webr`
+## Example `webr` {.smaller}
 
 ```{webr-r}
 fit = lm(mpg ~ am, data = mtcars)
@@ -193,8 +201,7 @@ fit = lm(mpg ~ am, data = mtcars)
 summary(fit)
 ```
 
-## Packages
-
+## Packages  {.smaller}
 
 ```{r}
 library(rio) # importing data
@@ -207,8 +214,7 @@ library(report) # easy stats is great
 library(MuMIn) # effect sizes 
 ```
 
-
-## Example 1: Priming
+## Example 1: Priming  {.smaller}
 
 - A good number of psychology projects use repeated measures data
 - This study is a large scale semantic priming study: https://osf.io/preprints/osf/q4fjy
@@ -217,8 +223,7 @@ library(MuMIn) # effect sizes
 - Independent variable: Word pair condition (Level 1)
 - Clustering variables: Participant, Item Trial 
 
-## Example 1: Priming Data
-
+## Example 1: Priming Data {.smaller}
 
 ```{r}
 DF <- import("data/sr_prime_trials.csv") %>% 
@@ -233,9 +238,7 @@ DF <- import("data/sr_prime_trials.csv") %>%
 head(DF)
 ```
 
-
-## Example 1: Priming Data 
-
+## Example 1: Priming Data  {.smaller}
 
 ```{r}
 # number of participants
@@ -251,11 +254,9 @@ DF %>%
             sd_trial = sd(n_trials))
 ```
 
-
-## Example 1: Intercept Only Model 
+## Example 1: Intercept Only Model  {.smaller}
 
 - `gls` is akin to `lm` using generalized least squares 
-
 
 ```{r}
 intercept.model <- gls(target_duration ~ 1, 
@@ -266,13 +267,11 @@ intercept.model <- gls(target_duration ~ 1,
 summary(intercept.model)
 ```
 
-
-## Example 1: Random Intercept Model 
+## Example 1: Random Intercept Model  {.smaller}
 
 - `nlme::lme` versus `lme4::lmer`
   - Random is added directly to the equation 
   - `target_duration ~ (1|observation) + (1|word_combo)`
-
 
 ```{r}
 random.intercept.model <- lme(target_duration ~ 1, 
@@ -286,9 +285,7 @@ random.intercept.model <- lme(target_duration ~ 1,
 summary(random.intercept.model)
 ```
 
-
-## Example 1: Fixed Effects Model 
-
+## Example 1: Fixed Effects Model {.smaller}
 
 ```{r}
 fixed.model <- lme(target_duration ~ 1 + type,
@@ -301,9 +298,7 @@ fixed.model <- lme(target_duration ~ 1 + type,
 summary(fixed.model)
 ```
 
-
-## Example 1: Model Comparison
-
+## Example 1: Model Comparison {.smaller}
 
 ```{r}
 compare_performance(intercept.model, random.intercept.model,
@@ -314,9 +309,7 @@ AIC(random.intercept.model) # lower
 AIC(fixed.model) # lower
 ```
 
-
-## Example 1: Model Assumption Checks
-
+## Example 1: Model Assumption Checks {.smaller}
 
 ```{r}
 # check_model(fixed.model)
@@ -331,17 +324,13 @@ hist(residuals)
 { plot(residuals, fitted); abline(h = 0); abline(v = 0) }
 ```
 
-
-## Example 1: Effect Size
-
+## Example 1: Effect Size {.smaller}
 
 ```{r}
 r.squaredGLMM(fixed.model)
 ```
 
-
-## Example 1: Examine Results
-
+## Example 1: Examine Results {.smaller}
 
 ```{r}
 model_parameters(fixed.model, summary = TRUE)
@@ -351,8 +340,7 @@ standardize_parameters(fixed.model)
 report(fixed.model)
 ```
 
-
-## Example 2: Daily Diary Study
+## Example 2: Daily Diary Study {.smaller}
 
 - Participants were given daily surveys to to measure their negative affect and stress across time
 - Dependent variable: Stress scores
@@ -361,8 +349,7 @@ report(fixed.model)
   - Level 2: Mean PANAS Score across time (between)
 - Clustering variable(s): Participant, time 
 
-## Example 2: Daily Diary Data
-
+## Example 2: Daily Diary Data {.smaller}
 
 ```{r}
 DF <- import("data/panas_data.csv") %>% 
@@ -371,9 +358,7 @@ DF <- import("data/panas_data.csv") %>%
 head(DF)
 ```
 
-
-## Example 2: Daily Diary Data
-
+## Example 2: Daily Diary Data {.smaller}
 
 ```{r}
 # number of participants
@@ -389,9 +374,7 @@ DF %>%
             max_times = max(n_times))
 ```
 
-
-## Example 2: Intercept Only Model 
-
+## Example 2: Intercept Only Model {.smaller}
 
 ```{r}
 intercept.model <- gls(stress_total ~ 1, 
@@ -402,9 +385,7 @@ intercept.model <- gls(stress_total ~ 1,
 summary(intercept.model)
 ```
 
-
-## Example 2: Random Intercept Model
-
+## Example 2: Random Intercept Model {.smaller}
 
 ```{r}
 random.intercept.model <- lme(stress_total ~ 1, 
@@ -417,9 +398,7 @@ random.intercept.model <- lme(stress_total ~ 1,
 summary(random.intercept.model)
 ```
 
-
-## Example 2: Fixed Effects Creation
-
+## Example 2: Fixed Effects Creation {.smaller}
 
 ```{r}
 negative.mean <- aggregate(DF$panas_negative, 
@@ -430,9 +409,7 @@ DF <- merge(DF, negative.mean, by = "partno")
 DF$negative.cnt <- DF$panas_negative - DF$negative.mean
 ```
 
-
-## Example 2: Fixed Effects Model
-
+## Example 2: Fixed Effects Model {.smaller}
 
 ```{r}
 fixed.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
@@ -444,9 +421,7 @@ fixed.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
 summary(fixed.model)
 ```
 
-
-## Example 2: Random Slope Model
-
+## Example 2: Random Slope Model {.smaller}
 
 ```{r}
 random.slope.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
@@ -458,9 +433,7 @@ random.slope.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
 summary(random.slope.model)
 ```
 
-
-## Example 2: Model Comparison
-
+## Example 2: Model Comparison {.smaller}
 
 ```{r}
 compare_performance(intercept.model, random.intercept.model,
@@ -472,26 +445,20 @@ AIC(fixed.model) # lower
 AIC(random.slope.model) # lower
 ```
 
-
-## Example 2: Model Assumption Checks
-
+## Example 2: Model Assumption Checks {.smaller}
 
 ```{r}
 check_model(random.slope.model)
 check_outliers(random.slope.model)
 ```
 
-
-## Example 2: Effect Size
-
+## Example 2: Effect Size {.smaller}
 
 ```{r}
 r.squaredGLMM(random.slope.model)
 ```
 
-
-## Example 2: Examine Results
-
+## Example 2: Examine Results {.smaller}
 
 ```{r}
 model_parameters(random.slope.model, summary = TRUE)
@@ -502,20 +469,18 @@ report(random.slope.model)
 
 
 
-
-## Other Resources
+## Other Resources {.smaller}
 
 - Free book on MLM: https://www.learn-mlms.com/
 - Tutorial on simulating nested data: https://debruine.github.io/faux/articles/sim_mixed.html#adding-random-effects
 - Gelman paper: http://www.stat.columbia.edu/~gelman/research/published/multi2.pdf
 
-## Summary
+## Summary {.smaller}
 
 - Multilevel models are flexible tools for structured/hierarchical data 
 - Regressions within regressions in understanding the equations/calculations
 - *R* makes these easy to run, `easystats` is still awesome
 - Thank you for your time on the weekend! 
-
 
 
 

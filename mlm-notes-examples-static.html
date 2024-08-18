@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="mlm-notes-examples_files/libs/clipboard/clipboard.min.js"></script>
-<script src="mlm-notes-examples_files/libs/quarto-html/tabby.min.js"></script>
-<script src="mlm-notes-examples_files/libs/quarto-html/popper.min.js"></script>
-<script src="mlm-notes-examples_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="mlm-notes-examples_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="mlm-notes-examples_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="mlm-notes-examples_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="mlm-notes-examples_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="mlm-notes-examples-static_files/libs/clipboard/clipboard.min.js"></script>
+<script src="mlm-notes-examples-static_files/libs/quarto-html/tabby.min.js"></script>
+<script src="mlm-notes-examples-static_files/libs/quarto-html/popper.min.js"></script>
+<script src="mlm-notes-examples-static_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="mlm-notes-examples-static_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="mlm-notes-examples-static_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="mlm-notes-examples-static_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="mlm-notes-examples-static_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Erin M. Buchanan">
@@ -15,8 +15,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="mlm-notes-examples_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="mlm-notes-examples_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="mlm-notes-examples-static_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="mlm-notes-examples-static_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,11 +95,11 @@
     code span.vs { color: #9ecbff; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="mlm-notes-examples_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="mlm-notes-examples_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="mlm-notes-examples_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="mlm-notes-examples_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="mlm-notes-examples_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="mlm-notes-examples-static_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="mlm-notes-examples-static_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="mlm-notes-examples-static_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="mlm-notes-examples-static_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="mlm-notes-examples-static_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -676,7 +676,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-1","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"fit = lm(mpg ~ am, data = mtcars)\n\nsummary(fit)","id":1},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-2","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"library(rio) # importing data\nlibrary(nlme) # other people love lmer4\nlibrary(dplyr) # best data manipulation package\nlibrary(performance) # easy stats is great\nlibrary(parameters) # easy stats is great \nlibrary(report) # easy stats is great \n# also recommend library(see)\nlibrary(MuMIn) # effect sizes ","id":2},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-3","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"DF <- import(\"data/sr_prime_trials.csv\") %>% \n  # only variables we need\n  select(observation, target_duration, word_combo, \n         keep_target, keep_participant, type) %>% \n  # remove trials and people who don't meet inclusion rules\n  filter(keep_target == \"keep\") %>% \n  filter(keep_participant == \"keep\") %>% \n  na.omit()\n\nhead(DF)","id":3},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-4","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# number of participants\nlength(unique(DF$observation))\n# number of items \nlength(unique(DF$word_combo))\n# average number of items per participant\nDF %>% \n  group_by(observation) %>% \n  summarize(n_trials = n()) %>% \n  ungroup() %>% \n  summarize(mean_trial = mean(n_trials),\n            sd_trial = sd(n_trials))","id":4},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-5","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"intercept.model <- gls(target_duration ~ 1, \n                       data = DF, \n                       method = \"ML\", \n                       na.action = \"na.omit\")\n\nsummary(intercept.model)","id":5},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-6","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"random.intercept.model <- lme(target_duration ~ 1, \n                              data = DF, \n                              method = \"ML\", \n                              na.action = \"na.omit\",\n                              # this is the random intercept part \n                              random = list(~1|observation,\n                                            ~1|word_combo))\n\nsummary(random.intercept.model)","id":6},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-7","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"fixed.model <- lme(target_duration ~ 1 + type,\n                   data = DF, \n                   method = \"ML\", \n                   na.action = \"na.omit\",\n                   random = list(~1|observation,\n                                 ~1|word_combo))\n\nsummary(fixed.model)","id":7},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-8","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"compare_performance(intercept.model, random.intercept.model,\n                    fixed.model)\n\nAIC(intercept.model)\nAIC(random.intercept.model) # lower \nAIC(fixed.model) # lower","id":8},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-9","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# check_model(fixed.model)\n# check_outliers(fixed.model)\n\n# if data is large, check_model is slow \nresiduals <- scale(residuals(fixed.model))\nfitted <- scale(fitted.values(fixed.model))\n\nhist(residuals)\n{ qqnorm(residuals); abline(0,1) } \n{ plot(residuals, fitted); abline(h = 0); abline(v = 0) }","id":9},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-10","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"r.squaredGLMM(fixed.model)","id":10},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-11","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"model_parameters(fixed.model, summary = TRUE)\n# plot(model_parameters(fixed.model, summary = TRUE))\nstandardize_parameters(fixed.model)\n\nreport(fixed.model)","id":11},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-12","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"DF <- import(\"data/panas_data.csv\") %>% \n  na.omit()\n\nhead(DF)","id":12},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-13","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"# number of participants\nlength(unique(DF$partno))\n# average number of time points per participant\nDF %>% \n  group_by(partno) %>% \n  summarize(n_times = n()) %>% \n  ungroup() %>% \n  summarize(mean_times = mean(n_times),\n            sd_times = sd(n_times),\n            min_times = min(n_times),\n            max_times = max(n_times))","id":13},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-14","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"intercept.model <- gls(stress_total ~ 1, \n                       data = DF, \n                       method = \"ML\", \n                       na.action = \"na.omit\")\n\nsummary(intercept.model)","id":14},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-15","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"random.intercept.model <- lme(stress_total ~ 1, \n                              data = DF, \n                              method = \"ML\", \n                              na.action = \"na.omit\",\n                              # this is the random intercept part \n                              random = list(~1|partno))\n\nsummary(random.intercept.model)","id":15},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-16","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"negative.mean <- aggregate(DF$panas_negative, \n                        by = list(DF$partno), \n                        mean, na.rm = TRUE)\nnames(negative.mean) <- c(\"partno\", \"negative.mean\")\nDF <- merge(DF, negative.mean, by = \"partno\")\nDF$negative.cnt <- DF$panas_negative - DF$negative.mean","id":16},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-17","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"fixed.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,\n                   data = DF, \n                   method = \"ML\", \n                   na.action = \"na.omit\",\n                   random = list(~1|partno))\n\nsummary(fixed.model)","id":17},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-18","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"random.slope.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,\n                   data = DF, \n                   method = \"ML\", \n                   na.action = \"na.omit\",\n                   random = list(~realtime|partno))\n\nsummary(random.slope.model)","id":18},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-19","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"compare_performance(intercept.model, random.intercept.model,\n                    fixed.model, random.slope.model)\n\nAIC(intercept.model)\nAIC(random.intercept.model) # lower \nAIC(fixed.model) # lower\nAIC(random.slope.model) # lower","id":19},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-20","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"check_model(random.slope.model)\ncheck_outliers(random.slope.model)","id":20},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-21","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"r.squaredGLMM(random.slope.model)","id":21},{"options":{"output":"true","editor-max-height":"","autorun":"false","out-height":"","dpi":72,"fig-cap":"","classes":"","read-only":"false","message":"true","editor-font-scale":"0.5","label":"unnamed-chunk-22","results":"markup","comment":"","editor-quick-suggestions":"false","warning":"true","context":"interactive","fig-height":5,"out-width":"700px","editor-word-wrap":"true","fig-width":7},"code":"model_parameters(random.slope.model, summary = TRUE)\n# plot(model_parameters(fixed.model, summary = TRUE))\n\nreport(random.slope.model)","id":22}];
+  globalThis.qwebrCellDetails = [{"id":1,"code":"fit = lm(mpg ~ am, data = mtcars)\n\nsummary(fit)","options":{"output":"true","out-width":"700px","classes":"","out-height":"","message":"true","editor-word-wrap":"true","context":"interactive","comment":"","read-only":"false","label":"unnamed-chunk-1","dpi":72,"editor-quick-suggestions":"false","results":"markup","editor-max-height":"","autorun":"false","fig-width":7,"fig-height":5,"warning":"true","editor-font-scale":"0.5","fig-cap":""}}];
 
   </script>
   <script type="module">
@@ -2428,8 +2428,16 @@ Erin M. Buchanan
 </section>
 <section id="packages" class="slide level2 smaller">
 <h2>Packages</h2>
-<div id="qwebr-insertion-location-2"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(rio) <span class="co"># importing data</span></span>
+<span id="cb4-2"><a href=""></a><span class="fu">library</span>(nlme) <span class="co"># other people love lmer4</span></span>
+<span id="cb4-3"><a href=""></a><span class="fu">library</span>(dplyr) <span class="co"># best data manipulation package</span></span>
+<span id="cb4-4"><a href=""></a><span class="fu">library</span>(performance) <span class="co"># easy stats is great</span></span>
+<span id="cb4-5"><a href=""></a><span class="fu">library</span>(parameters) <span class="co"># easy stats is great </span></span>
+<span id="cb4-6"><a href=""></a><span class="fu">library</span>(report) <span class="co"># easy stats is great </span></span>
+<span id="cb4-7"><a href=""></a><span class="co"># also recommend library(see)</span></span>
+<span id="cb4-8"><a href=""></a><span class="fu">library</span>(MuMIn) <span class="co"># effect sizes </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="example-1-priming" class="slide level2 smaller">
 <h2>Example 1: Priming</h2>
@@ -2444,21 +2452,94 @@ Erin M. Buchanan
 </section>
 <section id="example-1-priming-data" class="slide level2 smaller">
 <h2>Example 1: Priming Data</h2>
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>DF <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/sr_prime_trials.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="co"># only variables we need</span></span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">select</span>(observation, target_duration, word_combo, </span>
+<span id="cb5-4"><a href=""></a>         keep_target, keep_participant, type) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href=""></a>  <span class="co"># remove trials and people who don't meet inclusion rules</span></span>
+<span id="cb5-6"><a href=""></a>  <span class="fu">filter</span>(keep_target <span class="sc">==</span> <span class="st">"keep"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">filter</span>(keep_participant <span class="sc">==</span> <span class="st">"keep"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href=""></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a><span class="fu">head</span>(DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     observation target_duration   word_combo keep_target keep_participant
+1 5c86ebfb2-e609         575.544 авенијаручак        keep             keep
+2 be68c9e68-9040         662.900 авенијаручак        keep             keep
+3 c70a8bb1f-d793         488.900 авенијаручак        keep             keep
+4 77c9da84f-a097         400.000 авенијаручак        keep             keep
+5 c4244b8de-0681         609.000 авенијаручак        keep             keep
+6 e9b8b9c54-a976         576.962 авенијаручак        keep             keep
+       type
+1 unrelated
+2 unrelated
+3 unrelated
+4 unrelated
+5 unrelated
+6 unrelated</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-priming-data-1" class="slide level2 smaller">
 <h2>Example 1: Priming Data</h2>
-<div id="qwebr-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># number of participants</span></span>
+<span id="cb7-2"><a href=""></a><span class="fu">length</span>(<span class="fu">unique</span>(DF<span class="sc">$</span>observation))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 681</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># number of items </span></span>
+<span id="cb9-2"><a href=""></a><span class="fu">length</span>(<span class="fu">unique</span>(DF<span class="sc">$</span>word_combo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># average number of items per participant</span></span>
+<span id="cb11-2"><a href=""></a>DF <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href=""></a>  <span class="fu">group_by</span>(observation) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n_trials =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_trial =</span> <span class="fu">mean</span>(n_trials),</span>
+<span id="cb11-7"><a href=""></a>            <span class="at">sd_trial =</span> <span class="fu">sd</span>(n_trials))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  mean_trial sd_trial
+       &lt;dbl&gt;    &lt;dbl&gt;
+1       140.     21.5</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-intercept-only-model" class="slide level2 smaller">
 <h2>Example 1: Intercept Only Model</h2>
 <ul>
 <li class="fragment"><code>gls</code> is akin to <code>lm</code> using generalized least squares</li>
 </ul>
-<div id="qwebr-insertion-location-5"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>intercept.model <span class="ot">&lt;-</span> <span class="fu">gls</span>(target_duration <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb13-2"><a href=""></a>                       <span class="at">data =</span> DF, </span>
+<span id="cb13-3"><a href=""></a>                       <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb13-4"><a href=""></a>                       <span class="at">na.action =</span> <span class="st">"na.omit"</span>)</span>
+<span id="cb13-5"><a href=""></a></span>
+<span id="cb13-6"><a href=""></a><span class="fu">summary</span>(intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized least squares fit by maximum likelihood
+  Model: target_duration ~ 1 
+  Data: DF 
+      AIC     BIC    logLik
+  1362406 1362425 -681201.1
+
+Coefficients:
+               Value Std.Error t-value p-value
+(Intercept) 725.0498 0.9731638 745.044       0
+
+Standardized residuals:
+       Min         Q1        Med         Q3        Max 
+-1.8659624 -0.6086932 -0.2800019  0.2603637  7.4749990 
+
+Residual standard error: 300.8902 
+Degrees of freedom: 95598 total; 95597 residual</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-random-intercept-model" class="slide level2 smaller">
 <h2>Example 1: Random Intercept Model</h2>
@@ -2469,33 +2550,217 @@ Erin M. Buchanan
 <li class="fragment"><code>target_duration ~ (1|observation) + (1|word_combo)</code></li>
 </ul></li>
 </ul>
-<div id="qwebr-insertion-location-6"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>random.intercept.model <span class="ot">&lt;-</span> <span class="fu">lme</span>(target_duration <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb15-2"><a href=""></a>                              <span class="at">data =</span> DF, </span>
+<span id="cb15-3"><a href=""></a>                              <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb15-4"><a href=""></a>                              <span class="at">na.action =</span> <span class="st">"na.omit"</span>,</span>
+<span id="cb15-5"><a href=""></a>                              <span class="co"># this is the random intercept part </span></span>
+<span id="cb15-6"><a href=""></a>                              <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>observation,</span>
+<span id="cb15-7"><a href=""></a>                                            <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>word_combo))</span>
+<span id="cb15-8"><a href=""></a></span>
+<span id="cb15-9"><a href=""></a><span class="fu">summary</span>(random.intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by maximum likelihood
+  Data: DF 
+      AIC     BIC    logLik
+  1343359 1343397 -671675.5
+
+Random effects:
+ Formula: ~1 | observation
+        (Intercept)
+StdDev:    135.5622
+
+ Formula: ~1 | word_combo %in% observation
+        (Intercept) Residual
+StdDev:    141.7564 228.5829
+
+Fixed effects:  target_duration ~ 1 
+               Value Std.Error    DF  t-value p-value
+(Intercept) 725.6796  5.273002 94343 137.6217       0
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-3.3912147 -0.4694673 -0.1845673  0.2214105  7.1559565 
+
+Number of Observations: 95598
+Number of Groups: 
+                observation word_combo %in% observation 
+                        681                       95024 </code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-fixed-effects-model" class="slide level2 smaller">
 <h2>Example 1: Fixed Effects Model</h2>
-<div id="qwebr-insertion-location-7"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>fixed.model <span class="ot">&lt;-</span> <span class="fu">lme</span>(target_duration <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> type,</span>
+<span id="cb17-2"><a href=""></a>                   <span class="at">data =</span> DF, </span>
+<span id="cb17-3"><a href=""></a>                   <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb17-4"><a href=""></a>                   <span class="at">na.action =</span> <span class="st">"na.omit"</span>,</span>
+<span id="cb17-5"><a href=""></a>                   <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>observation,</span>
+<span id="cb17-6"><a href=""></a>                                 <span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>word_combo))</span>
+<span id="cb17-7"><a href=""></a></span>
+<span id="cb17-8"><a href=""></a><span class="fu">summary</span>(fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by maximum likelihood
+  Data: DF 
+      AIC     BIC    logLik
+  1342544 1342591 -671266.9
+
+Random effects:
+ Formula: ~1 | observation
+        (Intercept)
+StdDev:    135.6001
+
+ Formula: ~1 | word_combo %in% observation
+        (Intercept) Residual
+StdDev:     139.747 228.4602
+
+Fixed effects:  target_duration ~ 1 + type 
+                 Value Std.Error    DF   t-value p-value
+(Intercept)   700.9499  5.343982 94342 131.16623       0
+typeunrelated  49.7186  1.735545 94342  28.64723       0
+ Correlation: 
+              (Intr)
+typeunrelated -0.162
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-3.3414581 -0.4729406 -0.1829942  0.2230444  7.2947095 
+
+Number of Observations: 95598
+Number of Groups: 
+                observation word_combo %in% observation 
+                        681                       95024 </code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-model-comparison" class="slide level2 smaller">
 <h2>Example 1: Model Comparison</h2>
-<div id="qwebr-insertion-location-8"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">compare_performance</span>(intercept.model, random.intercept.model,</span>
+<span id="cb19-2"><a href=""></a>                    fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Comparison of Model Performance Indices
+
+Name                   | Model |   AIC (weights) |   BIC (weights) |    RMSE |   Sigma |  AICc (weights) |        R2
+--------------------------------------------------------------------------------------------------------------------
+intercept.model        |   gls | 1.4e+06 (&lt;.001) | 1.4e+06 (&lt;.001) | 300.890 | 300.890 |         (&gt;.999) | 4.441e-16
+random.intercept.model |   lme | 1.3e+06 (&lt;.001) | 1.3e+06 (&lt;.001) | 193.686 | 228.583 | 1.3e+06 (&gt;.999) |          
+fixed.model            |   lme | 1.3e+06 (&gt;.999) | 1.3e+06 (&gt;.999) | 194.311 | 228.460 | 1.3e+06 (&gt;.999) |          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">AIC</span>(intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1362406</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">AIC</span>(random.intercept.model) <span class="co"># lower </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1343359</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">AIC</span>(fixed.model) <span class="co"># lower</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1342544</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-model-assumption-checks" class="slide level2 smaller">
 <h2>Example 1: Model Assumption Checks</h2>
-<div id="qwebr-insertion-location-9"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># check_model(fixed.model)</span></span>
+<span id="cb27-2"><a href=""></a><span class="co"># check_outliers(fixed.model)</span></span>
+<span id="cb27-3"><a href=""></a></span>
+<span id="cb27-4"><a href=""></a><span class="co"># if data is large, check_model is slow </span></span>
+<span id="cb27-5"><a href=""></a>residuals <span class="ot">&lt;-</span> <span class="fu">scale</span>(<span class="fu">residuals</span>(fixed.model))</span>
+<span id="cb27-6"><a href=""></a>fitted <span class="ot">&lt;-</span> <span class="fu">scale</span>(<span class="fu">fitted.values</span>(fixed.model))</span>
+<span id="cb27-7"><a href=""></a></span>
+<span id="cb27-8"><a href=""></a><span class="fu">hist</span>(residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="mlm-notes-examples-static_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>{ <span class="fu">qqnorm</span>(residuals); <span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>) } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="mlm-notes-examples-static_files/figure-revealjs/unnamed-chunk-12-2.png" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>{ <span class="fu">plot</span>(residuals, fitted); <span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>); <span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">0</span>) }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="mlm-notes-examples-static_files/figure-revealjs/unnamed-chunk-12-3.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="example-1-effect-size" class="slide level2 smaller">
 <h2>Example 1: Effect Size</h2>
-<div id="qwebr-insertion-location-10"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">r.squaredGLMM</span>(fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             R2m       R2c
+[1,] 0.006811159 0.4247235</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1-examine-results" class="slide level2 smaller">
 <h2>Example 1: Examine Results</h2>
-<div id="qwebr-insertion-location-11"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">model_parameters</span>(fixed.model, <span class="at">summary =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter        | Coefficient |   SE |           95% CI | t(94342) |      p
+----------------------------------------------------------------------------
+(Intercept)      |      700.95 | 5.34 | [690.48, 711.42] |   131.17 | &lt; .001
+type [unrelated] |       49.72 | 1.74 | [ 46.32,  53.12] |    28.65 | &lt; .001
+
+# Random Effects
+
+Parameter                   | Coefficient
+-----------------------------------------
+SD (Intercept: observation) |      135.60
+SD (Intercept: word_combo)  |      139.75
+SD (Residual)               |      228.46
+
+Model: target_duration ~ 1 + type (95598 Observations)
+Residual standard deviation: 228.460 (df = 94342)
+: </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="co"># plot(model_parameters(fixed.model, summary = TRUE))</span></span>
+<span id="cb34-2"><a href=""></a><span class="fu">standardize_parameters</span>(fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Standardization method: refit
+
+Parameter        | Std. Coef. |         95% CI
+----------------------------------------------
+(Intercept)      |      -0.08 | [-0.11, -0.05]
+type [unrelated] |       0.17 | [ 0.15,  0.18]</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">report</span>(fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>We fitted a linear mixed model (estimated using ML and nlminb optimizer) to
+predict target_duration with type (formula: target_duration ~ 1 + type). The
+model included observation as random effects (formula: list(~1 | observation,
+~1 | word_combo)). The model's intercept, corresponding to type = related, is
+at 700.95 (95% CI [690.48, 711.42], t(94342) = 131.17, p &lt; .001). Within this
+model:
+
+  - The effect of type [unrelated] is statistically significant and positive
+(beta = 49.72, 95% CI [46.32, 53.12], t(94342) = 28.65, p &lt; .001; Std. beta =
+0.17, 95% CI [0.15, 0.18])
+
+Standardized parameters were obtained by fitting the model on a standardized
+version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+computed using a Wald t-distribution approximation.</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-daily-diary-study" class="slide level2 smaller">
 <h2>Example 2: Daily Diary Study</h2>
@@ -2512,58 +2777,319 @@ Erin M. Buchanan
 </section>
 <section id="example-2-daily-diary-data" class="slide level2 smaller">
 <h2>Example 2: Daily Diary Data</h2>
-<div id="qwebr-insertion-location-12"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>DF <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"data/panas_data.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href=""></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb38-3"><a href=""></a></span>
+<span id="cb38-4"><a href=""></a><span class="fu">head</span>(DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  progress_total panas_negative stress_total                           partno
+1             23             15            1 dc990a2ce52ba0b2d2d766e43c5071d6
+2             23             15            1 dc990a2ce52ba0b2d2d766e43c5071d6
+3             25             14            1 dc990a2ce52ba0b2d2d766e43c5071d6
+4             26             14            1 dc990a2ce52ba0b2d2d766e43c5071d6
+5             25             16            1 dc990a2ce52ba0b2d2d766e43c5071d6
+6             30             15            1 dc990a2ce52ba0b2d2d766e43c5071d6
+  realtime
+1     0.00
+2     1.00
+3     1.99
+4     2.99
+5     3.98
+6     4.99</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-daily-diary-data-1" class="slide level2 smaller">
 <h2>Example 2: Daily Diary Data</h2>
-<div id="qwebr-insertion-location-13"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="co"># number of participants</span></span>
+<span id="cb40-2"><a href=""></a><span class="fu">length</span>(<span class="fu">unique</span>(DF<span class="sc">$</span>partno))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 113</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># average number of time points per participant</span></span>
+<span id="cb42-2"><a href=""></a>DF <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href=""></a>  <span class="fu">group_by</span>(partno) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-4"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">n_times =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-5"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb42-6"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">mean_times =</span> <span class="fu">mean</span>(n_times),</span>
+<span id="cb42-7"><a href=""></a>            <span class="at">sd_times =</span> <span class="fu">sd</span>(n_times),</span>
+<span id="cb42-8"><a href=""></a>            <span class="at">min_times =</span> <span class="fu">min</span>(n_times),</span>
+<span id="cb42-9"><a href=""></a>            <span class="at">max_times =</span> <span class="fu">max</span>(n_times))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  mean_times sd_times min_times max_times
+       &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;     &lt;int&gt;
+1       12.6     2.64         1        15</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-intercept-only-model" class="slide level2 smaller">
 <h2>Example 2: Intercept Only Model</h2>
-<div id="qwebr-insertion-location-14"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>intercept.model <span class="ot">&lt;-</span> <span class="fu">gls</span>(stress_total <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb44-2"><a href=""></a>                       <span class="at">data =</span> DF, </span>
+<span id="cb44-3"><a href=""></a>                       <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb44-4"><a href=""></a>                       <span class="at">na.action =</span> <span class="st">"na.omit"</span>)</span>
+<span id="cb44-5"><a href=""></a></span>
+<span id="cb44-6"><a href=""></a><span class="fu">summary</span>(intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized least squares fit by maximum likelihood
+  Model: stress_total ~ 1 
+  Data: DF 
+       AIC      BIC    logLik
+  4876.129 4886.646 -2436.065
+
+Coefficients:
+               Value  Std.Error  t-value p-value
+(Intercept) 1.528169 0.03571252 42.79085       0
+
+Standardized residuals:
+       Min         Q1        Med         Q3        Max 
+-1.1359513 -0.3926099 -0.3926099 -0.3926099  7.7841455 
+
+Residual standard error: 1.345277 
+Degrees of freedom: 1420 total; 1419 residual</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-random-intercept-model" class="slide level2 smaller">
 <h2>Example 2: Random Intercept Model</h2>
-<div id="qwebr-insertion-location-15"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>random.intercept.model <span class="ot">&lt;-</span> <span class="fu">lme</span>(stress_total <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb46-2"><a href=""></a>                              <span class="at">data =</span> DF, </span>
+<span id="cb46-3"><a href=""></a>                              <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb46-4"><a href=""></a>                              <span class="at">na.action =</span> <span class="st">"na.omit"</span>,</span>
+<span id="cb46-5"><a href=""></a>                              <span class="co"># this is the random intercept part </span></span>
+<span id="cb46-6"><a href=""></a>                              <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>partno))</span>
+<span id="cb46-7"><a href=""></a></span>
+<span id="cb46-8"><a href=""></a><span class="fu">summary</span>(random.intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by maximum likelihood
+  Data: DF 
+       AIC      BIC    logLik
+  4456.026 4471.802 -2225.013
+
+Random effects:
+ Formula: ~1 | partno
+        (Intercept) Residual
+StdDev:   0.8244337  1.06616
+
+Fixed effects:  stress_total ~ 1 
+              Value  Std.Error   DF  t-value p-value
+(Intercept) 1.55362 0.08321221 1307 18.67058       0
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-4.30454994 -0.29479819 -0.11525706 -0.05541002  8.60744658 
+
+Number of Observations: 1420
+Number of Groups: 113 </code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-fixed-effects-creation" class="slide level2 smaller">
 <h2>Example 2: Fixed Effects Creation</h2>
-<div id="qwebr-insertion-location-16"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>negative.mean <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(DF<span class="sc">$</span>panas_negative, </span>
+<span id="cb48-2"><a href=""></a>                        <span class="at">by =</span> <span class="fu">list</span>(DF<span class="sc">$</span>partno), </span>
+<span id="cb48-3"><a href=""></a>                        mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-4"><a href=""></a><span class="fu">names</span>(negative.mean) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"partno"</span>, <span class="st">"negative.mean"</span>)</span>
+<span id="cb48-5"><a href=""></a>DF <span class="ot">&lt;-</span> <span class="fu">merge</span>(DF, negative.mean, <span class="at">by =</span> <span class="st">"partno"</span>)</span>
+<span id="cb48-6"><a href=""></a>DF<span class="sc">$</span>negative.cnt <span class="ot">&lt;-</span> DF<span class="sc">$</span>panas_negative <span class="sc">-</span> DF<span class="sc">$</span>negative.mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="example-2-fixed-effects-model" class="slide level2 smaller">
 <h2>Example 2: Fixed Effects Model</h2>
-<div id="qwebr-insertion-location-17"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>fixed.model <span class="ot">&lt;-</span> <span class="fu">lme</span>(stress_total <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> negative.mean <span class="sc">+</span> negative.cnt,</span>
+<span id="cb49-2"><a href=""></a>                   <span class="at">data =</span> DF, </span>
+<span id="cb49-3"><a href=""></a>                   <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb49-4"><a href=""></a>                   <span class="at">na.action =</span> <span class="st">"na.omit"</span>,</span>
+<span id="cb49-5"><a href=""></a>                   <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>partno))</span>
+<span id="cb49-6"><a href=""></a></span>
+<span id="cb49-7"><a href=""></a><span class="fu">summary</span>(fixed.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by maximum likelihood
+  Data: DF 
+       AIC      BIC    logLik
+  4316.113 4342.405 -2153.056
+
+Random effects:
+ Formula: ~1 | partno
+        (Intercept) Residual
+StdDev:   0.7572297 1.016058
+
+Fixed effects:  stress_total ~ 1 + negative.mean + negative.cnt 
+                  Value  Std.Error   DF   t-value p-value
+(Intercept)   0.5313282 0.24342615 1306  2.182708  0.0292
+negative.mean 0.0556071 0.01257117  111  4.423381  0.0000
+negative.cnt  0.0657026 0.00572279 1306 11.480883  0.0000
+ Correlation: 
+              (Intr) ngtv.m
+negative.mean -0.949       
+negative.cnt   0.000  0.000
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-4.0022728 -0.3932228 -0.0945899  0.1009836  8.5236045 
+
+Number of Observations: 1420
+Number of Groups: 113 </code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-random-slope-model" class="slide level2 smaller">
 <h2>Example 2: Random Slope Model</h2>
-<div id="qwebr-insertion-location-18"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>random.slope.model <span class="ot">&lt;-</span> <span class="fu">lme</span>(stress_total <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> negative.mean <span class="sc">+</span> negative.cnt,</span>
+<span id="cb51-2"><a href=""></a>                   <span class="at">data =</span> DF, </span>
+<span id="cb51-3"><a href=""></a>                   <span class="at">method =</span> <span class="st">"ML"</span>, </span>
+<span id="cb51-4"><a href=""></a>                   <span class="at">na.action =</span> <span class="st">"na.omit"</span>,</span>
+<span id="cb51-5"><a href=""></a>                   <span class="at">random =</span> <span class="fu">list</span>(<span class="sc">~</span>realtime<span class="sc">|</span>partno))</span>
+<span id="cb51-6"><a href=""></a></span>
+<span id="cb51-7"><a href=""></a><span class="fu">summary</span>(random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear mixed-effects model fit by maximum likelihood
+  Data: DF 
+       AIC      BIC    logLik
+  4174.756 4211.565 -2080.378
+
+Random effects:
+ Formula: ~realtime | partno
+ Structure: General positive-definite, Log-Cholesky parametrization
+            StdDev    Corr  
+(Intercept) 1.3277461 (Intr)
+realtime    0.1075518 -0.893
+Residual    0.9187873       
+
+Fixed effects:  stress_total ~ 1 + negative.mean + negative.cnt 
+                  Value  Std.Error   DF   t-value p-value
+(Intercept)   0.6321300 0.21288561 1306  2.969341   3e-03
+negative.mean 0.0377227 0.01102278  111  3.422248   9e-04
+negative.cnt  0.0603304 0.00550876 1306 10.951731   0e+00
+ Correlation: 
+              (Intr) ngtv.m
+negative.mean -0.949       
+negative.cnt   0.028 -0.016
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-3.02732595 -0.38036935 -0.05720288  0.12664612  8.92243129 
+
+Number of Observations: 1420
+Number of Groups: 113 </code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-model-comparison" class="slide level2 smaller">
 <h2>Example 2: Model Comparison</h2>
-<div id="qwebr-insertion-location-19"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">compare_performance</span>(intercept.model, random.intercept.model,</span>
+<span id="cb53-2"><a href=""></a>                    fixed.model, random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Comparison of Model Performance Indices
+
+Name                   | Model |  AIC (weights) |  BIC (weights) |  RMSE | Sigma | AICc (weights) | R2 (cond.) | R2 (marg.) |   ICC |        R2
+-----------------------------------------------------------------------------------------------------------------------------------------------
+intercept.model        |   gls | 4876.1 (&lt;.001) | 4886.6 (&lt;.001) | 1.345 | 1.345 |        (&gt;.999) |            |            |       | 3.331e-15
+random.intercept.model |   lme | 4456.0 (&lt;.001) | 4471.8 (&lt;.001) | 1.029 | 1.066 | 4456.0 (&gt;.999) |      0.374 |      0.000 | 0.374 |          
+fixed.model            |   lme | 4316.1 (&lt;.001) | 4342.4 (&lt;.001) | 0.981 | 1.016 | 4316.2 (&gt;.999) |      0.432 |      0.116 | 0.357 |          
+random.slope.model     |   lme | 4174.8 (&gt;.999) | 4211.6 (&gt;.999) | 0.863 | 0.919 | 4174.8 (&gt;.999) |      0.692 |      0.049 | 0.676 |          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">AIC</span>(intercept.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4876.129</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">AIC</span>(random.intercept.model) <span class="co"># lower </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4456.026</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">AIC</span>(fixed.model) <span class="co"># lower</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4316.113</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="fu">AIC</span>(random.slope.model) <span class="co"># lower</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4174.756</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-model-assumption-checks" class="slide level2 smaller">
 <h2>Example 2: Model Assumption Checks</h2>
-<div id="qwebr-insertion-location-20"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="fu">check_model</span>(random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">check_outliers</span>(random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>OK: No outliers detected.
+- Based on the following method and threshold:  ().
+- For variable: (Whole model)</code></pre>
+</div>
+</div>
+<img data-src="mlm-notes-examples-static_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
 <section id="example-2-effect-size" class="slide level2 smaller">
 <h2>Example 2: Effect Size</h2>
-<div id="qwebr-insertion-location-21"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">r.squaredGLMM</span>(random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           R2m       R2c
+[1,] 0.0751046 0.5254546</code></pre>
+</div>
+</div>
 </section>
 <section id="example-2-examine-results" class="slide level2 smaller">
 <h2>Example 2: Examine Results</h2>
-<div id="qwebr-insertion-location-22"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">model_parameters</span>(random.slope.model, <span class="at">summary =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Fixed Effects
+
+Parameter     | Coefficient |       SE |       95% CI |     t |   df |      p
+-----------------------------------------------------------------------------
+(Intercept)   |        0.63 |     0.21 | [0.21, 1.05] |  2.97 | 1306 | 0.003 
+negative mean |        0.04 |     0.01 | [0.02, 0.06] |  3.42 |  111 | &lt; .001
+negative cnt  |        0.06 | 5.51e-03 | [0.05, 0.07] | 10.95 | 1306 | &lt; .001
+
+# Random Effects
+
+Parameter                        | Coefficient
+----------------------------------------------
+SD (Intercept: partno)           |        1.33
+SD (realtime: partno)            |        0.11
+Cor (Intercept~realtime: partno) |       -0.89
+SD (Residual)                    |        0.92
+
+Model: stress_total ~ 1 + negative.mean + negative.cnt (1420 Observations)
+Residual standard deviation: 0.919 (df = 1306)
+Conditional R2: 0.692; Marginal R2: 0.049</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="co"># plot(model_parameters(fixed.model, summary = TRUE))</span></span>
+<span id="cb70-2"><a href=""></a></span>
+<span id="cb70-3"><a href=""></a><span class="fu">report</span>(random.slope.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>We fitted a linear mixed model (estimated using ML and nlminb optimizer) to
+predict stress_total with negative.mean and negative.cnt (formula: stress_total
+~ 1 + negative.mean + negative.cnt). The model included realtime as random
+effects (formula: list(~realtime | partno)). The model's total explanatory
+power is substantial (conditional R2 = 0.69) and the part related to the fixed
+effects alone (marginal R2) is of 0.05. The model's intercept, corresponding to
+negative.mean = 0 and negative.cnt = 0, is at 0.63 (95% CI [0.21, 1.05],
+t(1306) = 2.97, p = 0.003). Within this model:
+
+  - The effect of negative mean is statistically significant and positive (beta =
+0.04, 95% CI [0.02, 0.06], t(111) = 3.42, p &lt; .001; Std. beta = 0.17, 95% CI
+[0.07, 0.27])
+  - The effect of negative cnt is statistically significant and positive (beta =
+0.06, 95% CI [0.05, 0.07], t(1306) = 10.95, p &lt; .001; Std. beta = 0.21, 95% CI
+[0.17, 0.25])
+
+Standardized parameters were obtained by fitting the model on a standardized
+version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+computed using a Wald t-distribution approximation.</code></pre>
+</div>
+</div>
 </section>
 <section id="other-resources" class="slide level2 smaller">
 <h2>Other Resources</h2>
@@ -2591,19 +3117,19 @@ Erin M. Buchanan
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="mlm-notes-examples_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="mlm-notes-examples_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="mlm-notes-examples-static_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>

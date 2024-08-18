@@ -1,0 +1,4 @@
+- source: mlm-notes-examples-static.qmd
+  quarto-pub:
+    - id: ce9c9156-6a26-4808-b7e8-3beafb8934d9
+      url: 'https://doomlab.quarto.pub/mlm-tutorial-static'
