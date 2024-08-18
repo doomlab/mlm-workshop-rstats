@@ -7,20 +7,25 @@ filters:
   - webr
 ---
 
-## Example slide
+## Goals
 
-```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
+- Understand what types of data are appropriate for multilevel models
+- Review the basic equations/terminology of regression versus multilevel models
+- Learn how to implement these models in *R*
 
-summary(fit)
-```
+## Terminology Note
 
-## Reminder
+- Multi-level model
+- Random effects model
+- Mixed model
+- Random coefficient model
+- Hierarchical model
 
--   Everything we've done so far has dealt with measurements of:
-    -   Multiple samples (independent *t*, regression with categorical variables)
-    -   Multiple independent variables (multiple/logistic regression)
-    -   One sample tested twice (dependent *t*)
+## Non-Hierarchical Data
+
+- Often thought of as "between-subjects" data
+- Each person/data observation has *one* row of data 
+- Where each column represents *one* variable 
 
 ## Hierarchical Data
 
@@ -55,10 +60,26 @@ summary(fit)
     -   For example, if equipment prices are missing from May, you could model the data even without those numbers
 -   Control for measurement error due to the study design or measurement tools
 
+## Regression Equation
+
+- A simple equation with one predictor: 
+
+$$\hat{Y_i} = b_0 + b_1X_i + \epsilon_i$$
+
+- $\hat{Y_i}$: The *predicted* dependent variable score for participant $i$
+- $b_0$: The y-intercept, average score for Y when X is zero
+- $b_1$: The slope for the first predictor, 
+  - For every one unit increase in X, we see $b$ increases in Y
+- $X_i$: The score on the first predictor for participant $i$
+- $\epsilon_i$: The residual or error for participant $i$
+  - The actual $Y_i$ minus the predicted $\hat{Y_i}$
+
 ## Modeling
 
 -   MLM is still regression - and we can use linear, logistic, etc.
--   We still use the same system of examining the model overall, then the predictors
+-   We generally use the same system as examining regression:
+  - An overall model 
+  - Examine individual predictors 
 -   However, we need to add a new concept: random effects
 -   Fixed coefficients: Intercepts/slopes are assumed to be the same across different contexts
 -   Random coefficients: Intercepts/slopes are allowed to vary across different contexts
@@ -74,25 +95,61 @@ summary(fit)
     -   Equipment is most likely, but could also be time depending on hypothesis
 -   Happiness scores for individuals in multiple countries (each country contains multiple measurements of people)
     -   Country
+    
+## MLM Terminology
+
+- Level 1 versus Level 2, 3, ...
+- Examples help: Predicting a language test score ~ gender_student + school_type
+- Dependent variable: language test score 
+- Independent variables: gender of student and school type
+- Cluster variable: school number (multiple schools within school type)
+- Level 1: gender of student (each test score is matched to a gender)
+- Level 2: school type (multiple language scores matched to a school type)
+  
+## MLM Regression Equation
+
+- Level 1
+
+$$\hat{Y_{ij}} = b_{0j} + b_{1j}X_{ij} + \epsilon_{ij}$$
+- $\hat{Y_{ij}}$: predicted score for the dependent variable for participant $i$ for Level 2 $j$ 
+- $b_{0j}$: Intercept 
+- $b_{1j}$: Slope for level 1 predictor
+- $X_{ij}$: Level 1 predictor score for participant $i$ who is in Level 2 $j$
+- $\epsilon_{ij}$: Error for participant $i$ who is in Level 2 $j$
+
+## MLM Regression Equation
+
+- Level 2 
+
+$$b_{0j} = \gamma_{00} + \gamma_{01}X_j + u_{0j}$$
+- $X_j$: Level 2 predictor
+- $\gamma_{00}$: Overall intercept: grand mean of the dependent variable
+- $\gamma_{01}$: Effect of Level 2 predictor on level 1 intercept
+- $u_{0j}$: Difference in Level 2 $j$ from the overall intercept
+
+$$b_{1j} =  \gamma_{10} + \gamma_{11}X_j + u_{1j}$$
+- $\gamma_{10}$: average slope of the Level 1 predictor 
+- $\gamma_{11}$: Effect of the Level 2 predictor on the level 1 slope 
+- $u_{1j}$:  Difference in Level 2 $j$ from the overall slope
 
 ## Random Coefficients
 
--   Random intercept: allows each of the random variable "participants" to have a different intercept
+-   Random intercept: allows each of the random cluster variables to have a different intercept
     -   Remember that the intercept is the average score for Y if X(s) are zero
-    -   Therefore, effectively this is the average of each "participant" separately
+    -   Therefore, effectively this is the average of each cluster separately
     -   The values shown in the output are the deviation from the overall non-random intercept
-
-## Random Coefficients
-
--   Random slope: allows each of the random variable "participants" to have a different slope for the target coefficient
-    -   You can just do one random slope (for just one X variable) or many of them
-    -   This output creates a different slope for each of the "participants"
-
+    
 ## Random Coefficients
 
 ```{r}
 knitr::include_graphics("images/12_img_1.png")
 ```
+
+## Random Coefficients
+
+-   Random slope: allows each of the random cluster variables to have a different slope for the target coefficient
+    -   You can just do one random slope (for just one X variable) or many of them
+    -   This output creates a different slope for each of the clusters
 
 ## Random Coefficients
 
@@ -112,191 +169,306 @@ knitr::include_graphics("images/12_img_3.png")
     -   Null model or intercept only model
     -   Random intercept model + below
     -   Fixed effects model + below
-    -   Random slopes + below
+    -   Random slopes + below (if you want)
+-   But sometimes people like to do it the other way 
 -   Compare with AIC
 
-## Model Walkthrough: Population and Measurement
+## `webr`
 
--   Population: English speaking people who also can type
--   What they measured:
-    -   IVs:
-        -   Typing speed of the participants, number of finger and hand switches when typing, letter frequency in English, "right-hand" advantage
-    -   DV: Rating of how pleasant the word is
+- This tutorial was written with `quarto` and `webr`.
+- `webr` allows you to run *R* interactively in the browser without extra installation. 
 
-## Model Walkthrough: Dataset
+## Example `webr`
 
-```{r message = F}
-library(rio)
-library(dplyr)
-DF <- import("data/12_mlm.csv") %>% 
-  select(partno, rating, speed, trialcode, 
-         lrswitch, fingerswitch, letterfreq, rha)
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+
+summary(fit)
+```
+
+## Packages
+
+```{r}
+library(rio) # importing data
+library(nlme) # other people love lmer4
+library(dplyr) # best data manipulation package
+library(performance) # easy stats is great
+library(parameters) # easy stats is great 
+library(report) # easy stats is great 
+# also recommend library(see)
+library(MuMIn) # effect sizes 
+```
+
+## Example 1: Priming
+
+- A good number of psychology projects use repeated measures data
+- This study is a large scale semantic priming study: https://osf.io/preprints/osf/q4fjy
+- The data includes the priming trials from Serbian 
+- Dependent variable: Response latency
+- Independent variable: Word pair condition (Level 1)
+- Clustering variables: Participant, Item Trial 
+
+## Example 1: Priming Data
+
+```{r}
+DF <- import("data/sr_prime_trials.csv") %>% 
+  # only variables we need
+  select(observation, target_duration, word_combo, 
+         keep_target, keep_participant, type) %>% 
+  # remove trials and people who don't meet inclusion rules
+  filter(keep_target == "keep") %>% 
+  filter(keep_participant == "keep") %>% 
+  na.omit()
 
 head(DF)
 ```
 
-## Model Walkthrough: Hypotheses
-
--   MODEL Hypothesis:
-    -   $H_0$: The overall prediction is equal to the null model with no predictors.
-        -   Null model residuals = Real model residuals
-    -   $H_A$: The overall prediction is not equal to the model with no predictors.
-        -   Null model residuals != Real model residuals
-
-## Model Walkthrough: Hypotheses
-
--   PREDICTOR Hypothesis:
-    -   $H_0$: The predictor variable is not related to the dependent variable.
-        -   $b_1$ = 0
-    -   $H_A$: The predictor variable is related to the dependent variable.
-        -   $b_1$ != 0
-    -   This hypothesis applies to each predictor.
-
-## Model Walkthrough: Examine Data
-
-```{r message = F}
-hist(DF$rating)
-
-library(GGally)
-ggpairs(DF %>% select(-partno, -trialcode))
-```
-
-## Model Walkthrough: Model
-
--   For assumption testing, we will want to examine the model that is most complex (but the best fitting)
--   So we shall build them all here and determine which to use
--   Start with intercept only model as our null model
+## Example 1: Priming Data 
 
 ```{r}
-# gls is generalized least squares, like lm models 
-library(nlme)
-intercept.model <- gls(rating ~ 1, 
+# number of participants
+length(unique(DF$observation))
+# number of items 
+length(unique(DF$word_combo))
+# average number of items per participant
+DF %>% 
+  group_by(observation) %>% 
+  summarize(n_trials = n()) %>% 
+  ungroup() %>% 
+  summarize(mean_trial = mean(n_trials),
+            sd_trial = sd(n_trials))
+```
+
+## Example 1: Intercept Only Model 
+
+- `gls` is akin to `lm` using generalized least squares 
+
+```{r}
+intercept.model <- gls(target_duration ~ 1, 
                        data = DF, 
                        method = "ML", 
                        na.action = "na.omit")
+
+summary(intercept.model)
 ```
 
-## Model Walkthrough: Model
+## Example 1: Random Intercept Model 
 
--   You write random intercepts as `~ 1 | VARIABLE_NAME`
+- `nlme::lme` versus `lme4::lmer`
+  - Random is added directly to the equation 
+  - `target_duration ~ (1|observation) + (1|word_combo)`
 
 ```{r}
-random.intercept.model <- lme(rating ~ 1, 
+random.intercept.model <- lme(target_duration ~ 1, 
                               data = DF, 
                               method = "ML", 
                               na.action = "na.omit",
                               # this is the random intercept part 
-                              random = ~1|partno)
+                              random = list(~1|observation,
+                                            ~1|word_combo))
+
+summary(random.intercept.model)
 ```
 
-## Multiple Model Walkthrough: Model
-
--   Add the fixed effects like we normally do
+## Example 1: Fixed Effects Model 
 
 ```{r}
-fixed.model <- lme(rating ~ speed +  
-                     fingerswitch + 
-                     letterfreq + 
-                     rha, 
+fixed.model <- lme(target_duration ~ 1 + type,
                    data = DF, 
                    method = "ML", 
                    na.action = "na.omit",
-                   random = ~1|partno)
+                   random = list(~1|observation,
+                                 ~1|word_combo))
+
+summary(fixed.model)
 ```
 
-## Multiple Model Walkthrough: Model
-
--   You write random slopes as `~VARIABLE_NAME | VARIABLE_NAME`
+## Example 1: Model Comparison
 
 ```{r}
-random.slope.model <- lme(rating ~ speed + 
-                            fingerswitch +
-                            letterfreq + 
-                            rha, 
-                          data = DF, 
-                          method = "ML", 
-                          na.action = "na.omit",
-                          # this is the random slopes 
-                          random = ~rha|partno)
+compare_performance(intercept.model, random.intercept.model,
+                    fixed.model)
+
+AIC(intercept.model)
+AIC(random.intercept.model) # lower 
+AIC(fixed.model) # lower
 ```
 
-## Model Walkthrough: Pick a Model
-
--   Which model has the lowest AIC?
+## Example 1: Model Assumption Checks
 
 ```{r}
-library(performance)
+# check_model(fixed.model)
+# check_outliers(fixed.model)
+
+# if data is large, check_model is slow 
+residuals <- scale(residuals(fixed.model))
+fitted <- scale(fitted.values(fixed.model))
+
+hist(residuals)
+{ qqnorm(residuals); abline(0,1) } 
+{ plot(residuals, fitted); abline(h = 0); abline(v = 0) }
+```
+
+## Example 1: Effect Size
+
+```{r}
+r.squaredGLMM(fixed.model)
+```
+
+## Example 1: Examine Results
+
+```{r}
+model_parameters(fixed.model, summary = TRUE)
+# plot(model_parameters(fixed.model, summary = TRUE))
+standardize_parameters(fixed.model)
+
+report(fixed.model)
+```
+
+## Example 2: Daily Diary Study
+
+- Participants were given daily surveys to to measure their negative affect and stress across time
+- Dependent variable: Stress scores
+- Independent variable: 
+  - Level 1: Centered PANAS Negative Score (within)
+  - Level 2: Mean PANAS Score across time (between)
+- Clustering variable(s): Participant, time 
+
+## Example 2: Daily Diary Data
+
+```{r}
+DF <- import("data/panas_data.csv") %>% 
+  na.omit()
+
+head(DF)
+```
+
+## Example 2: Daily Diary Data
+
+```{r}
+# number of participants
+length(unique(DF$partno))
+# average number of time points per participant
+DF %>% 
+  group_by(partno) %>% 
+  summarize(n_times = n()) %>% 
+  ungroup() %>% 
+  summarize(mean_times = mean(n_times),
+            sd_times = sd(n_times),
+            min_times = min(n_times),
+            max_times = max(n_times))
+```
+
+## Example 2: Intercept Only Model 
+
+```{r}
+intercept.model <- gls(stress_total ~ 1, 
+                       data = DF, 
+                       method = "ML", 
+                       na.action = "na.omit")
+
+summary(intercept.model)
+```
+
+## Example 2: Random Intercept Model
+
+```{r}
+random.intercept.model <- lme(stress_total ~ 1, 
+                              data = DF, 
+                              method = "ML", 
+                              na.action = "na.omit",
+                              # this is the random intercept part 
+                              random = list(~1|partno))
+
+summary(random.intercept.model)
+```
+
+## Example 2: Fixed Effects Creation
+
+```{r}
+negative.mean <- aggregate(DF$panas_negative, 
+                        by = list(DF$partno), 
+                        mean, na.rm = TRUE)
+names(negative.mean) <- c("partno", "negative.mean")
+DF <- merge(DF, negative.mean, by = "partno")
+DF$negative.cnt <- DF$panas_negative - DF$negative.mean
+```
+
+## Example 2: Fixed Effects Model
+
+```{r}
+fixed.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
+                   data = DF, 
+                   method = "ML", 
+                   na.action = "na.omit",
+                   random = list(~1|partno))
+
+summary(fixed.model)
+```
+
+## Example 2: Random Slope Model
+
+```{r}
+random.slope.model <- lme(stress_total ~ 1 + negative.mean + negative.cnt,
+                   data = DF, 
+                   method = "ML", 
+                   na.action = "na.omit",
+                   random = list(~realtime|partno))
+
+summary(random.slope.model)
+```
+
+## Example 2: Model Comparison
+
+```{r}
 compare_performance(intercept.model, random.intercept.model,
                     fixed.model, random.slope.model)
 
 AIC(intercept.model)
 AIC(random.intercept.model) # lower 
 AIC(fixed.model) # lower
-AIC(random.slope.model) # higher 
+AIC(random.slope.model) # lower
 ```
 
-## Multiple Model Walkthrough: Assumptions
-
--   Additivity: had to exclude a variable due to a high correlation
--   Normality: Looks ok!
+## Example 2: Model Assumption Checks
 
 ```{r}
-# we can use check_model and check_outliers 
-# this was very slow on 36k datapoints, so here's a another option
-residuals <- scale(residuals(fixed.model))
-fitted <- scale(fitted.values(fixed.model))
-
-hist(residuals)
-{ qqnorm(residuals); abline(0,1) } 
+check_model(random.slope.model)
+check_outliers(random.slope.model)
 ```
 
-## Multiple Model Walkthrough: Assumptions
-
--   Linearity: Line looks fairly straight, maybe not perfect
--   Homoscedasticity: Looks ok, lines are due to data type
+## Example 2: Effect Size
 
 ```{r}
-library(ggplot2)
-ggplot(data = NULL, aes(x = fitted, y = residuals)) + 
-  geom_point() + 
-  theme_classic() + 
-  geom_vline(xintercept = 0) + 
-  geom_hline(yintercept = 0) + 
-  geom_smooth()
+r.squaredGLMM(random.slope.model)
 ```
 
-## Multiple Model Walkthrough: Model
-
--   We figured out this was the best model
--   Our effect size $R^2$ is small-medium ($R^2$ = .07)
+## Example 2: Examine Results
 
 ```{r}
-model_performance(fixed.model)
+model_parameters(random.slope.model, summary = TRUE)
+# plot(model_parameters(fixed.model, summary = TRUE))
+
+report(random.slope.model)
 ```
 
-## Multiple Model Walkthrough: Predictors
 
--   What do the different results mean?
 
-```{r}
-library(parameters)
-model_parameters(fixed.model, summary = TRUE)
-```
+## Other Resources
 
-## Multiple Model Walkthrough: Predictors
-
--   Let's see which predictor is the "best"
--   Note that partial correlations are probably not appropriate when you have hierarchical data, because they assume you do not.
-
-```{r}
-standardize_parameters(fixed.model)
-# not sure why this plot is being weird 
-plot(standardize_parameters(fixed.model))
-```
+- Free book on MLM: https://www.learn-mlms.com/
+- Tutorial on simulating nested data: https://debruine.github.io/faux/articles/sim_mixed.html#adding-random-effects
+- Gelman paper: http://www.stat.columbia.edu/~gelman/research/published/multi2.pdf
 
 ## Summary
 
--   You learned about multilevel modeling for repeated or structured data
--   Everything is a multilevel model if you try hard enough ;)
--   You applied what you learned about regression (linear and logistic) to data with nested structures
--   And you survived the semester!
+- Multilevel models are flexible tools for structured/hierarchical data 
+- Regressions within regressions in understanding the equations/calculations
+- *R* makes these easy to run, `easystats` is still awesome
+- Thank you for your time on the weekend! 
+
+
+
+
+
+
